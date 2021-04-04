@@ -9,11 +9,10 @@
 import UIKit
 
 class CountriesTableViewController: UITableViewController {
-   // var lespays = countries
-    //let cont = Dictionary(grouping: countries) { (country) -> String in
-      //  return country.continent}
-    //let CountryByContinent = countries
-    //var lescontinent :  = countries
+    
+    let CountryByContinent = Dictionary(grouping: countries) { (country) -> String in
+        return country.continent}
+    
     
     
     
@@ -32,7 +31,7 @@ class CountriesTableViewController: UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         
-        return countries.count
+        return CountryByContinent.count
     }
     
     
@@ -41,7 +40,7 @@ class CountriesTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         //return countries.count
         //let section = CountryByContinent[section]
-        return countries[section].nation.count
+        return countries.count
         
     }
 
@@ -52,7 +51,7 @@ class CountriesTableViewController: UITableViewController {
         
        
         
-       
+            let country = countries[indexPath.row]
         //let country  = CountryByContinent[indexPath.row]
         /*switch country.continent {
         case .Afrique:
@@ -62,14 +61,23 @@ class CountriesTableViewController: UITableViewController {
         }*/
        // let country = country1
        
-         cell.textLabel?.text =  countries[indexPath.section].nation[indexPath.row][0]
-        cell.detailTextLabel?.text =  countries[indexPath.section].nation[indexPath.row][1]
-        cell.imageView?.image = UIImage(named:  countries[indexPath.section].nation[indexPath.row][0])
+         cell.textLabel?.text = country.isoCode
+        cell.detailTextLabel?.text = country.name
+        cell.imageView?.image = UIImage(named: country.isoCode)
         return cell
     }
         override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int)-> String? {
         //return "Section \(section)"
-            return  countries[section].continent
+        if section == 0
+        {return "Afrique"}
+        else if section == 1
+        {return "Europe"}
+        else if section == 2
+        {return "Asie"}
+        else if section == 3
+        {return "Amerique"}
+        else
+        {return "Océanie"}
     }
 
     /*

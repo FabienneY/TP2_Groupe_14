@@ -9,7 +9,7 @@
 import Foundation
 
 struct Country {
-    
+    var isoCode: String
+    var name: String
     var continent: String
-    var nation : [[String]]
 }
